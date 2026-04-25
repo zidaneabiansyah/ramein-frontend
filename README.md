@@ -1,197 +1,85 @@
-# 🎨 Ramein Frontend
+# Ramein - Event Management System (Frontend)
 
-## 🛠️ Tech Stack
+Ramein adalah platform manajemen kegiatan digital yang dirancang untuk mengotomatisasi siklus hidup acara, mulai dari publikasi, manajemen peserta, hingga sistem sertifikasi otomatis.
 
-![Next.js](https://img.shields.io/badge/Next.js-15-000000?style=for-the-badge&logo=next.js&logoColor=white)  
-![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black)  
-![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?style=for-the-badge&logo=typescript&logoColor=white)  
-![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4.x-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)  
-![Framer Motion](https://img.shields.io/badge/Framer%20Motion-Animations-0055FF?style=for-the-badge&logo=framer&logoColor=white)  
-![Radix UI](https://img.shields.io/badge/Radix%20UI-Accessible-111111?style=for-the-badge&logo=radixui&logoColor=white)  
-![Lucide Icons](https://img.shields.io/badge/Lucide-Icons-000000?style=for-the-badge&logo=lucide&logoColor=white)  
-![PWA](https://img.shields.io/badge/PWA-Ready-5A0FC8?style=for-the-badge&logo=pwa&logoColor=white)  
+## Tech Stack
 
----
+* **Runtime:** Node.js (v18+)
+* **Framework:** Express.js with TypeScript
+* **Database:** PostgreSQL
+* **ORM:** TypeORM
+* **Security:** JWT (Access & Refresh Token), RBAC, CORS Whitelisting
+* **Services:** Nodemailer (OTP & Notifications)
+* **DevOps:** Docker, Railway (Deployment)
 
-## 📋 Deskripsi
+## Core Features
 
-**Ramein Frontend** adalah aplikasi web berbasis **Next.js 15** yang menjadi antarmuka utama pengguna untuk sistem manajemen kegiatan/event.  
-Didesain dengan pendekatan **modern UI/UX** menggunakan TailwindCSS, Framer Motion, dan Radix UI sehingga responsif, interaktif, dan nyaman dipakai di semua perangkat.  
+### Security & Authentication
+* **Identity Management:** Autentikasi berbasis JWT dengan mekanisme refresh token.
+* **Access Control:** Role-Based Access Control (RBAC) untuk memisahkan hak akses User dan Admin.
+* **Verification:** Sistem verifikasi email berbasis OTP dan prosedur reset password yang aman.
 
----
+### Event & Participant Management
+* **Event Lifecycle:** Manajemen CRUD event dengan validasi jadwal (H-3) dan sistem publikasi.
+* **Discovery:** Fitur pencarian dan filter berdasarkan kategori, rentang tanggal, dan harga.
+* **Attendance:** Pelacakan kehadiran (attendance tracking) secara real-time untuk setiap peserta.
+* **Data Handling:** Fitur bulk import peserta melalui file Excel/CSV.
 
-## ✨ Fitur Utama
+### Certification System
+* **Automated Generation:** Pembuatan sertifikat otomatis dalam format PDF dengan template custom.
+* **Validation:** Verifikasi keaslian sertifikat menggunakan sistem QR Code dan metadata unik.
+* **Revocation:** Sistem pencabutan sertifikat jika terjadi pembatalan status peserta.
 
-- 🏠 **Landing Page Modern** dengan animasi & CTA  
-- 🔐 **Auth System**: login, register, verifikasi email, reset password  
-- 📊 **User Dashboard** dengan statistik & histori event  
-- 📅 **Event Management**: daftar event, detail event, registrasi  
-- 🏆 **Certificate System**: lihat & download sertifikat  
-- 🎭 **UI Interaktif**: animasi micro-interaction (Framer Motion)  
-- 📲 **PWA Support**: installable + offline mode  
-- 🔍 **Search & Filter** untuk event & konten  
-- ⚙️ **Admin Panel** untuk pengelolaan event (role-based access)  
+### Admin & Analytics
+* **Dashboard:** Ringkasan statistik performa event, statistik user, dan metrik kehadiran.
+* **Reporting:** Ekspor data laporan (bulanan/per event) ke format Excel, CSV, atau PDF.
 
----
+## Project Structure
 
-## 🚀 Installation & Setup
-
-### 1️⃣ Clone Repository
-```bash
-git clone https://github.com/OwlDane/ramein-frontend.git
-cd ramein-frontend
-````
-
-### 2️⃣ Install Dependencies
-
-```bash
-npm install
-```
-
-### 3️⃣ Konfigurasi Environment
-
-Buat file `.env.local`:
-
-```env
-NEXT_PUBLIC_API_URL=http://localhost:3001
-NEXT_PUBLIC_APP_NAME=Ramein
-```
-
-### 4️⃣ Jalankan Development Server
-
-```bash
-npm run dev
-```
-
-Aplikasi akan jalan di `http://localhost:3000`
-
-### 5️⃣ Production Build
-
-```bash
-npm run build
-npm start
-```
-
----
-
-## 📂 Struktur Proyek
-
-```
+```text
 src/
-├── app/
-│   ├── (auth)/         # Halaman auth (login/register)
-│   ├── dashboard/      # User dashboard
-│   ├── events/         # Event pages
-│   ├── about/          # Tentang aplikasi
-│   ├── terms/          # Syarat & ketentuan
-│   └── layout.tsx      # Root layout
-├── components/
-│   ├── ui/             # UI components (button, modal, dsb)
-│   ├── event/          # Komponen event
-│   ├── layout/         # Navbar, Footer, Sidebar
-│   └── shared/         # Komponen umum
-├── lib/                # Utils & helper functions
-├── contexts/           # Context API (auth, theme, dsb)
-├── types/              # TypeScript types
-└── styles/             # Global styles
+├── config/      # Database & Environment configurations
+├── controllers/ # Express request handlers
+├── entities/    # Data models (TypeORM)
+├── middlewares/ # Authentication & validation layers
+├── routes/      # API endpoint definitions
+├── services/    # Core business logic
+└── utils/       # Utility functions & helpers
 ```
 
----
+## Setup & Installation
 
-## 📱 User Experience
+### Prerequisites
+* Node.js v18+
+* PostgreSQL v12+
 
-* ✅ **Mobile-first design**
-* 🚀 **Fast performance** (Next.js App Router + SSR/ISR)
-* ♿ **Aksesibilitas terjaga** (Radix UI + ARIA)
-* 🎨 **Customizable themes**
+### Quick Start
+1.  **Clone Repository**
+    ```bash
+    git clone https://github.com/OwlDane/ramein-backend.git
+    cd ramein-backend
+    ```
+2.  **Install Dependencies**
+    ```bash
+    npm install
+    ```
+3.  **Environment Configuration**
+    Salin file `.env.example` menjadi `.env` dan lengkapi kredensial database serta SMTP email.
+4.  **Database Migration**
+    ```bash
+    npm run db:setup
+    ```
+5.  **Run Development Server**
+    ```bash
+    npm run dev
+    ```
 
----
+## API Documentation
+Dokumentasi API lengkap dapat diakses melalui:
+* **Swagger:** `/api/docs` (jika diaktifkan)
+* **Postman Collection:** Tersedia pada folder `docs/` di repositori ini.
 
-## 🔐 Authentication Flow
-
-1. Register → email verification
-2. Login → token disimpan di local storage
-3. Protected routes dengan middleware Next.js
-4. Reset password via email
-
----
-
-## 🧪 Testing
-
-```bash
-npm run lint     # Linting
-npm run typecheck # Type checking
-npm run test     # Unit tests
-```
-
----
-
-## 📱 PWA Support
-
-* ✅ Installable (Add to Home Screen)
-* ✅ Offline caching
-* ✅ Web app manifest
-
----
-
-## 🌍 Deployment
-
-### Railway Deployment (Recommended)
-
-```bash
-# Install Railway CLI
-npm install -g @railway/cli
-
-# Login and deploy
-railway login
-railway init
-railway up
-```
-
-See [RAILWAY_DEPLOYMENT.md](../RAILWAY_DEPLOYMENT.md) for detailed instructions.
-
-### Vercel (Alternative)
-
-* Deploy to Vercel for static hosting
-* Configure environment variables in Vercel dashboard
-
-### Docker (Manual)
-
-```bash
-docker build -t ramein-frontend .
-docker run -p 3000:3000 ramein-frontend
-```
-
----
-
-## 🤝 Contributing
-
-1. Fork repository ini
-2. Buat branch baru (`feature/namafitur`)
-3. Commit perubahan
-4. Push ke branch
-5. Buka **Pull Request**
-
----
-
-## 📄 License
-
-Ramein Frontend dirilis di bawah lisensi **ISC License**
-
----
-
-## 👥 Tim
-
-* [@OwlDane](https://github.com/OwlDane) - Developer
-
----
-
-## 🌟 Special Thanks
-
-* Next.js Team
-* Tailwind Labs
-* Framer Motion
-* Radix UI
-* Open Source Contributors
+## License
+Project ini dilisensikan di bawah **ISC License**.
 
 ---
